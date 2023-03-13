@@ -24,7 +24,7 @@ async function ping(): Promise<boolean> {
 }
 
 export type FloodFillParams = { grid: string[][]; x: number; y: number; color: string };
-export async function floodFill(params: FloodFillParams) {
+export async function floodFill(params: FloodFillParams): Promise<string[][] | null> {
   try {
     const res = await fetch(apiRoutes.floodFill, {
       method: "POST",
@@ -32,9 +32,10 @@ export async function floodFill(params: FloodFillParams) {
       headers: { "Content-Type": "application/json" },
     });
     if (!res.ok) throw await res.text();
-    return await res.text();
+    return await res.json();
   } catch (e) {
     console.error(e);
+    alert(e);
     return null;
   }
 }

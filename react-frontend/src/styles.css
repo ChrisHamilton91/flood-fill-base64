@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+
+.grid-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  min-width: max-content;
+  margin: 10px;
+}
+
+.grid-column {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.grid-cell {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  height: 16px;
+  width: 16px;
+}
