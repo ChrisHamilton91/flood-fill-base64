@@ -7,11 +7,16 @@ const apiRoutes = {
 } as const;
 
 // Sanity checks
-if (!apiUrl) console.error("No API url found! Ensure the environment variable exists!");
-else
-  ping().then((res) => {
-    if (!res) console.error("Failed to ping API at url: ", apiUrl);
-  });
+try {
+  if (!apiUrl) throw "No API url found! Ensure the environment variable exists!";
+  else
+    ping().then((res) => {
+      if (!res) throw "Failed to ping API at url: " + apiUrl;
+    });
+} catch (e) {
+  console.error(e);
+  alert(e);
+}
 
 async function ping(): Promise<boolean> {
   try {
@@ -19,6 +24,7 @@ async function ping(): Promise<boolean> {
     return res.ok;
   } catch (e) {
     console.error(e);
+    alert(e);
     return false;
   }
 }
