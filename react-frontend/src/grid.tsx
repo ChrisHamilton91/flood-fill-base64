@@ -1,10 +1,11 @@
 import { FC, memo } from "react";
 
-type GridProps = { grid: string[][]; onCellClick(x: number, y: number): void };
+type GridProps = { grid: string[][]; onCellClick(x: number, y: number): void; loading: boolean };
 
-const Grid: FC<GridProps> = memo(({ grid, onCellClick }) => {
+const Grid: FC<GridProps> = memo(({ grid, onCellClick, loading }) => {
   return (
     <div className="grid">
+      {loading ? <div className="grid-loading-overlay"></div> : null}
       {grid.map((row, y) => (
         <GridColumn key={y} column={row} x={y} onCellClick={onCellClick} />
       ))}

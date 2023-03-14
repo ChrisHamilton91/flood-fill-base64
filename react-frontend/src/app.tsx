@@ -16,12 +16,16 @@ function App() {
   const [columns, setColumns] = useState<string>(defaultColumns.toString());
   const [fillColor, setFillColor] = useState<string>(randomColor());
   const [grid, setGrid] = useState<string[][]>([]);
+  const [gridLoading, setGridLoading] = useState<boolean>(false);
 
   const handleCellClick = useCallback(
     (x: number, y: number) => {
-      floodFill({ grid, x, y, color: fillColor }).then((newGrid) => {
-        if (newGrid) setGrid(newGrid);
-      });
+      setGridLoading(true);
+      floodFill({ grid, x, y, color: fillColor })
+        .then((newGrid) => {
+          if (newGrid) setGrid(newGrid);
+        })
+        .finally(() => setGridLoading(false));
     },
     [grid, fillColor]
   );
@@ -38,7 +42,7 @@ function App() {
         />
       </div>
       <div className="grid-container">
-        <Grid grid={grid} onCellClick={handleCellClick} />
+        <Grid grid={grid} onCellClick={handleCellClick} loading={gridLoading} />
       </div>
     </div>
   );
