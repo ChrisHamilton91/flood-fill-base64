@@ -41,8 +41,14 @@ function App() {
           setGrid={setGrid}
         />
       </div>
-      <div className="grid-container">
-        <Grid grid={grid} onCellClick={handleCellClick} loading={gridLoading} />
+      <div className="grid-container-outer">
+        <div className="flex-spacer"></div>
+        <div className="grid-container-inner">
+          <div className="flex-spacer"></div>
+          <Grid grid={grid} onCellClick={handleCellClick} loading={gridLoading} />
+          <div className="flex-spacer"></div>
+        </div>
+        <div className="flex-spacer"></div>
       </div>
     </div>
   );
