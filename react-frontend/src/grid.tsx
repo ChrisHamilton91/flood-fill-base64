@@ -2,7 +2,7 @@ import { FC, memo } from "react";
 
 type GridProps = { grid: string[][]; onCellClick(x: number, y: number): void };
 
-export const Grid: FC<GridProps> = memo(({ grid, onCellClick }) => {
+const Grid: FC<GridProps> = memo(({ grid, onCellClick }) => {
   return (
     <div className="grid-container">
       {grid.map((row, y) => (
@@ -35,9 +35,11 @@ const GridCell: FC<GridCellProps> = memo(({ color, x, y, onCellClick }) => {
   return (
     <div
       key={x}
-      className={"grid-cell " + x + " " + y}
+      className="grid-cell"
       style={{ backgroundColor: color }}
       onClick={() => onCellClick(x, y)}
     ></div>
   );
 });
+
+export default Grid;
