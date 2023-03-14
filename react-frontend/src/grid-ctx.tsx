@@ -10,14 +10,15 @@ import {
 } from "react";
 import { floodFill } from "./api";
 import useForceRender from "./force-render";
-import randomColor from "./random-color";
+import randomColor from "./color-utils/random-color";
 
+// Keeping colors as numbers to reduce payload when passing grid over network
 type GridCtxProps = {
-  gridColorsState: [string[], React.Dispatch<React.SetStateAction<string[]>>];
+  gridColorsState: [number[], React.Dispatch<React.SetStateAction<number[]>>];
   rowsState: [string, React.Dispatch<React.SetStateAction<string>>];
   columnsState: [string, React.Dispatch<React.SetStateAction<string>>];
-  fillColorState: [string, (value: string) => void];
-  grid: string[][];
+  fillColorState: [number, (value: number) => void];
+  grid: number[][];
   generateGrid: () => void;
   gridLoading: boolean;
   handleCellClick: (x: number, y: number) => void;
@@ -34,8 +35,8 @@ export const maxRows = 400 as const;
 export const maxColumns = 400 as const;
 
 export const GridCtxProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [gridColors, setGridColors] = useState<string[]>(
-    new Array(numColors).fill("").map(randomColor)
+  const [gridColors, setGridColors] = useState<number[]>(
+    new Array(numColors).fill(0).map(randomColor)
   );
   const [rows, setRows] = useState<string>(defaultRows.toString());
   const [columns, setColumns] = useState<string>(defaultColumns.toString());
@@ -44,13 +45,13 @@ export const GridCtxProvider: FC<PropsWithChildren> = ({ children }) => {
   // These are refs so we can change them without changing the onClick function of every cell (handleCellClick),
   // which would cause the entire grid to be rerendered on every change
   const forceRender = useForceRender();
-  const fillColor = useRef<string>(randomColor());
-  const setFillColor = (value: string) => {
+  const fillColor = useRef<number>(randomColor());
+  const setFillColor = (value: number) => {
     fillColor.current = value;
     forceRender();
   };
-  const grid = useRef<string[][]>([]);
-  const setGrid = (value: string[][]) => {
+  const grid = useRef<number[][]>([]);
+  const setGrid = (value: number[][]) => {
     grid.current = value;
     forceRender();
   };
@@ -86,7 +87,7 @@ export const GridCtxProvider: FC<PropsWithChildren> = ({ children }) => {
     setColumns(numColumns.toString());
 
     // Generate grid where each cell is a random color from gridColors
-    const grid: string[][] = [];
+    const grid: number[][] = [];
     for (let column = 0; column < numColumns; column++) {
       grid.push([]);
       for (let row = 0; row < numRows; row++) {

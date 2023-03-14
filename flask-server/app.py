@@ -26,7 +26,7 @@ def flood_fill_request():
         return str(e), 500
 
 
-def flood_fill(grid: list[list[str]], x: int, y: int, color: str):
+def flood_fill(grid: list[list[int]], x: int, y: int, color: str):
     width = len(grid)
     height = len(grid[0])
     old_color = grid[x][y]

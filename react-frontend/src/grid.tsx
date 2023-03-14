@@ -1,4 +1,5 @@
 import { FC, useMemo } from "react";
+import numberToHexString from "./color-utils/number-to-hex-string";
 import { useGridCtx } from "./grid-ctx";
 
 const Grid: FC = () => {
@@ -21,7 +22,7 @@ const Grid: FC = () => {
 };
 
 type GridCellProps = {
-  color: string;
+  color: number;
   x: number;
   y: number;
 };
@@ -34,7 +35,7 @@ const GridCell: FC<GridCellProps> = ({ color, x, y }) => {
       <div
         key={x}
         className="grid-cell"
-        style={{ backgroundColor: color }}
+        style={{ backgroundColor: numberToHexString(color) }}
         onClick={() => handleCellClick(x, y)}
       ></div>
     );

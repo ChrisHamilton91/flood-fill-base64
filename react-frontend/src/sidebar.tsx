@@ -1,5 +1,7 @@
 import { FC } from "react";
 import { maxColumns, maxRows, minColumns, minRows, useGridCtx } from "./grid-ctx";
+import hexStringToNumber from "./color-utils/hex-string-to-number";
+import numberToHexString from "./color-utils/number-to-hex-string";
 
 const Sidebar: FC = () => {
   const {
@@ -10,7 +12,7 @@ const Sidebar: FC = () => {
     generateGrid,
   } = useGridCtx();
 
-  function handleColorChange(i: number, color: string) {
+  function handleColorChange(i: number, color: number) {
     setGridColors((prev) => {
       const next = [...prev];
       next[i] = color;
@@ -27,8 +29,8 @@ const Sidebar: FC = () => {
             <br />
             <input
               type="color"
-              value={color}
-              onChange={(e) => handleColorChange(i, e.target.value)}
+              value={numberToHexString(color)}
+              onChange={(e) => handleColorChange(i, hexStringToNumber(e.target.value))}
             />
           </label>
         ))}
@@ -45,7 +47,11 @@ const Sidebar: FC = () => {
       </form>
       <label>
         Fill Color:{" "}
-        <input type="color" value={fillColor} onChange={(e) => setFillColor(e.target.value)} />
+        <input
+          type="color"
+          value={numberToHexString(fillColor)}
+          onChange={(e) => setFillColor(hexStringToNumber(e.target.value))}
+        />
       </label>
     </>
   );
