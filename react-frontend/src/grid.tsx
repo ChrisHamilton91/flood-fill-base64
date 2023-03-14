@@ -1,46 +1,44 @@
-import { FC, memo } from "react";
+import { FC, useMemo } from "react";
+import { useGridCtx } from "./grid-ctx";
 
-type GridProps = { grid: string[][]; onCellClick(x: number, y: number): void; loading: boolean };
+const Grid: FC = () => {
+  const { grid } = useGridCtx();
 
-const Grid: FC<GridProps> = memo(({ grid, onCellClick, loading }) => {
-  return (
-    <div className="grid">
-      {loading ? <div className="grid-loading-overlay"></div> : null}
-      {grid.map((row, y) => (
-        <GridColumn key={y} column={row} x={y} onCellClick={onCellClick} />
-      ))}
-    </div>
+  return useMemo(
+    () => (
+      <div className="grid">
+        {grid.map((column, x) => (
+          <div className="grid-column" key={x}>
+            {column.map((color, y) => (
+              <GridCell key={y} color={color} x={x} y={y} />
+            ))}
+          </div>
+        ))}
+      </div>
+    ),
+    [grid]
   );
-});
-
-type GridColumnProps = { column: string[]; x: number; onCellClick(x: number, y: number): void };
-
-const GridColumn: FC<GridColumnProps> = memo(({ column, x, onCellClick }) => {
-  return (
-    <div className="grid-column">
-      {column.map((color, y) => (
-        <GridCell key={y} color={color} x={x} y={y} onCellClick={onCellClick} />
-      ))}
-    </div>
-  );
-});
+};
 
 type GridCellProps = {
   color: string;
   x: number;
   y: number;
-  onCellClick(x: number, y: number): void;
 };
 
-const GridCell: FC<GridCellProps> = memo(({ color, x, y, onCellClick }) => {
-  return (
-    <div
-      key={x}
-      className="grid-cell"
-      style={{ backgroundColor: color }}
-      onClick={() => onCellClick(x, y)}
-    ></div>
-  );
-});
+const GridCell: FC<GridCellProps> = ({ color, x, y }) => {
+  const { handleCellClick } = useGridCtx();
+
+  return useMemo(() => {
+    return (
+      <div
+        key={x}
+        className="grid-cell"
+        style={{ backgroundColor: color }}
+        onClick={() => handleCellClick(x, y)}
+      ></div>
+    );
+  }, [color, x, y, handleCellClick]);
+};
 
 export default Grid;

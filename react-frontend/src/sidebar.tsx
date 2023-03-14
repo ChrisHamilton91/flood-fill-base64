@@ -1,59 +1,21 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
+import { maxColumns, maxRows, minColumns, minRows, useGridCtx } from "./grid-ctx";
 
-const minRows = 3 as const;
-const minColumns = 3 as const;
-const maxRows = 200 as const;
-const maxColumns = 200 as const;
+const Sidebar: FC = () => {
+  const {
+    gridColorsState: [gridColors, setGridColors],
+    rowsState: [rows, setRows],
+    columnsState: [columns, setColumns],
+    fillColorState: [fillColor, setFillColor],
+    generateGrid,
+  } = useGridCtx();
 
-type SideBarProps = {
-  gridColorsState: [string[], React.Dispatch<React.SetStateAction<string[]>>];
-  rowsState: [string, React.Dispatch<React.SetStateAction<string>>];
-  columnsState: [string, React.Dispatch<React.SetStateAction<string>>];
-  fillColorState: [string, React.Dispatch<React.SetStateAction<string>>];
-  setGrid: React.Dispatch<React.SetStateAction<string[][]>>;
-};
-
-const Sidebar: FC<SideBarProps> = ({
-  gridColorsState: [gridColors, setGridColors],
-  rowsState: [rows, setRows],
-  columnsState: [columns, setColumns],
-  fillColorState: [fillColor, setFillColor],
-  setGrid,
-}) => {
   function handleColorChange(i: number, color: string) {
     setGridColors((prev) => {
       const next = [...prev];
       next[i] = color;
       return next;
     });
-  }
-
-  useEffect(generateGrid, []);
-
-  function generateGrid() {
-    let numRows = parseInt(rows);
-    let numColumns = parseInt(columns);
-
-    // Keeps rows and columns between min and max
-    if (!numRows || numRows < minRows) numRows = minRows;
-    if (!numColumns || numColumns < minColumns) numColumns = minColumns;
-    if (numRows > maxRows) numRows = maxRows;
-    if (numColumns > maxColumns) numColumns = maxColumns;
-
-    // Update UI inputs
-    setRows(numRows.toString());
-    setColumns(numColumns.toString());
-
-    // Generate grid where each cell is a random color from gridColors
-    const grid: string[][] = [];
-    for (let column = 0; column < numColumns; column++) {
-      grid.push([]);
-      for (let row = 0; row < numRows; row++) {
-        grid[column].push(gridColors[Math.floor(Math.random() * gridColors.length)]);
-      }
-    }
-
-    setGrid(grid);
   }
 
   return (
