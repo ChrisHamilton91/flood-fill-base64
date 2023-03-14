@@ -31,11 +31,13 @@ def flood_fill(grid: list[list[str]], x: int, y: int, color: str):
     height = len(grid[0])
     old_color = grid[x][y]
     stack = [(x, y)]
+    visited = set()  # necessary when old_color == color
 
     while len(stack) > 0:
         x, y = stack.pop()
-        if grid[x][y] != old_color:
+        if grid[x][y] != old_color or (x, y) in visited:
             continue
+        visited.add((x, y))
         grid[x][y] = color
 
         north = y-1
