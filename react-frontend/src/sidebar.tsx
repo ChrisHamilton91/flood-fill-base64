@@ -1,5 +1,7 @@
 import { FC, useEffect, useState } from "react";
 
+const minRows = 3 as const;
+const minColumns = 3 as const;
 const maxRows = 200 as const;
 const maxColumns = 200 as const;
 
@@ -32,9 +34,9 @@ const Sidebar: FC<SideBarProps> = ({
     let numRows = parseInt(rows);
     let numColumns = parseInt(columns);
 
-    // Keeps rows and columns between 1 and max
-    if (!numRows) numRows = 1;
-    if (!numColumns) numColumns = 1;
+    // Keeps rows and columns between min and max
+    if (!numRows || numRows < minRows) numRows = minRows;
+    if (!numColumns || numColumns < minColumns) numColumns = minColumns;
     if (numRows > maxRows) numRows = maxRows;
     if (numColumns > maxColumns) numColumns = maxColumns;
 
@@ -69,12 +71,12 @@ const Sidebar: FC<SideBarProps> = ({
           </label>
         ))}
         <label>
-          Rows (1-{maxRows}):
+          Rows ({minRows}-{maxRows}):
           <br />
           <input type="number" value={rows} onChange={(e) => setRows(e.target.value)} />
         </label>
         <label>
-          Columns (1-{maxColumns}): <br />
+          Columns ({minColumns}-{maxColumns}): <br />
           <input type="number" value={columns} onChange={(e) => setColumns(e.target.value)} />
         </label>
         <button onClick={generateGrid}>Regenerate Grid</button>
