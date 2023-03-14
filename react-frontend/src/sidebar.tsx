@@ -55,11 +55,12 @@ const Sidebar: FC<SideBarProps> = ({
   }
 
   return (
-    <div className="sidebar-container">
+    <>
       <form className="grid-form" onSubmit={(e) => e.preventDefault()}>
         {gridColors.map((color, i) => (
           <label key={i}>
-            Color {i + 1}:{" "}
+            Color {i + 1}:
+            <br />
             <input
               type="color"
               value={color}
@@ -82,7 +83,7 @@ const Sidebar: FC<SideBarProps> = ({
         Fill Color:{" "}
         <input type="color" value={fillColor} onChange={(e) => setFillColor(e.target.value)} />
       </label>
-    </div>
+    </>
   );
 };
 

@@ -3,50 +3,69 @@
 }
 
 html,
-body {
+body,
+#root {
+  height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
 }
 
 .app-container {
   display: flex;
+  height: 100%;
+  padding: 10px;
+  background-color: hsl(0, 0, 15);
+  color: white;
 }
 
 .sidebar-container {
   display: flex;
-  position: sticky;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 60px;
+  min-width: 10em;
+  padding: 10px;
 
   .grid-form {
     display: flex;
     flex-direction: column;
-    row-gap: 10px;
+    row-gap: 16px;
   }
 
-  input[type="number"] {
-    width: 5em;
+  input {
+    width: 100%;
+  }
+
+  button {
+    margin-top: 10px;
+    height: 2.5em;
   }
 }
 
 .grid-container {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  min-width: max-content;
-}
+  flex-grow: 1;
+  overflow: auto;
 
-.grid-column {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-}
+  .grid {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    height: fit-content;
 
-.grid-cell {
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  height: 16px;
-  width: 16px;
+    .grid-column {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+    }
+
+    .grid-cell {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      height: 16px;
+      width: 16px;
+    }
+  }
 }

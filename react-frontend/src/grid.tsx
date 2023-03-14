@@ -4,7 +4,7 @@ type GridProps = { grid: string[][]; onCellClick(x: number, y: number): void };
 
 const Grid: FC<GridProps> = memo(({ grid, onCellClick }) => {
   return (
-    <div className="grid-container">
+    <div className="grid">
       {grid.map((row, y) => (
         <GridColumn key={y} column={row} x={y} onCellClick={onCellClick} />
       ))}

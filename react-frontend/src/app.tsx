@@ -28,14 +28,18 @@ function App() {
 
   return (
     <div className="app-container">
-      <Sidebar
-        gridColorsState={[gridColors, setGridColors]}
-        rowsState={[rows, setRows]}
-        columnsState={[columns, setColumns]}
-        fillColorState={[fillColor, setFillColor]}
-        setGrid={setGrid}
-      />
-      <Grid grid={grid} onCellClick={handleCellClick} />
+      <div className="sidebar-container">
+        <Sidebar
+          gridColorsState={[gridColors, setGridColors]}
+          rowsState={[rows, setRows]}
+          columnsState={[columns, setColumns]}
+          fillColorState={[fillColor, setFillColor]}
+          setGrid={setGrid}
+        />
+      </div>
+      <div className="grid-container">
+        <Grid grid={grid} onCellClick={handleCellClick} />
+      </div>
     </div>
   );
 }
