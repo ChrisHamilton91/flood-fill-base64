@@ -36,6 +36,7 @@ export async function floodFill(params: FloodFillParams): Promise<string[][] | n
       method: "POST",
       body: JSON.stringify(params),
       headers: { "Content-Type": "application/json" },
+      signal: AbortSignal.timeout(1e4), // 10 second timeout
     });
     if (!res.ok) throw await res.text();
     return await res.json();
