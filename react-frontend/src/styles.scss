@@ -165,6 +165,14 @@ body {
     font-size: 0.8em;
   }
 
+  .main-container-outer {
+    padding: 10px 0 10px 0;
+
+    .main-container-inner {
+      padding: 10px;
+    }
+  }
+
   .header {
     font-size: 1em;
 
@@ -174,8 +182,14 @@ body {
   }
 
   .sidebar-container {
-    min-width: 6em;
-    max-width: 6em;
+    min-width: 7em;
+    max-width: 7em;
+    margin-right: 0;
+    row-gap: 32px;
+
+    .grid-form {
+      row-gap: 8px;
+    }
 
     button {
       overflow: hidden;
