@@ -11,6 +11,10 @@ body,
   padding: 0;
 }
 
+input[type="color"] {
+  cursor: pointer;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans");
 
 body {
