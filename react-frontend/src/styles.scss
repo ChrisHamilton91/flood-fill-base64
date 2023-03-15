@@ -18,7 +18,7 @@ input[type="color"] {
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans");
 
 body {
-  background-color: hsl(0, 0, 8%);
+  background-color: hsl(0, 0%, 8%);
   font-family: "Work Sans";
 }
 
@@ -73,7 +73,7 @@ body {
     min-width: 0;
     width: 100%;
     padding: 30px;
-    background-color: hsl(0, 0, 12%);
+    background-color: hsl(0, 0%, 12%);
   }
 }
 
@@ -101,7 +101,7 @@ body {
   button {
     margin-top: 10px;
     height: 2.5em;
-    background-color: hsl(0, 0, 0);
+    background-color: hsl(0, 0%, 0%);
     border: 2px solid white;
     border-radius: 6px;
     color: inherit;
@@ -110,7 +110,7 @@ body {
     font-size: inherit;
 
     &:hover {
-      background-color: hsl(0, 0, 20%);
+      background-color: hsl(0, 0%, 20%);
     }
   }
 }
