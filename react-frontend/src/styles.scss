@@ -11,8 +11,11 @@ body,
   padding: 0;
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans");
+
 body {
   background-color: hsl(0, 0, 8%);
+  font-family: "Work Sans";
 }
 
 .loading-overlay {
@@ -99,6 +102,8 @@ body {
     border-radius: 6px;
     color: inherit;
     cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
 
     &:hover {
       background-color: hsl(0, 0, 20%);
@@ -152,6 +157,10 @@ body {
 }
 
 @media screen and (max-width: 600px) {
+  body {
+    font-size: 0.8em;
+  }
+
   .header {
     font-size: 1em;
 
@@ -159,11 +168,14 @@ body {
       width: 2.5em;
     }
   }
+
   .sidebar-container {
-    min-width: 7em;
-    max-width: 7em;
+    min-width: 6em;
+    max-width: 6em;
 
     button {
+      overflow: hidden;
+      word-wrap: break-word;
       height: 3em;
     }
   }

@@ -43,7 +43,7 @@ const Sidebar: FC = () => {
           Columns ({minColumns}-{maxColumns}): <br />
           <input type="number" value={columns} onChange={(e) => setColumns(e.target.value)} />
         </label>
-        <button onClick={generateGrid}>Regenerate Grid</button>
+        <button onClick={generateGrid}>Generate Grid</button>
       </form>
       <label>
         Fill Color:{" "}
