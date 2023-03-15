@@ -27,12 +27,12 @@ type GridCtxProps = {
 const GridCtx = createContext<GridCtxProps>(null as any);
 
 const numColors = 3 as const;
-const defaultRows = 50 as const;
-const defaultColumns = 50 as const;
+const defaultRows = 40 as const;
+const defaultColumns = 40 as const;
 export const minRows = 3 as const;
 export const minColumns = 3 as const;
-export const maxRows = 400 as const;
-export const maxColumns = 400 as const;
+export const maxRows = 200 as const;
+export const maxColumns = 200 as const;
 
 export const GridCtxProvider: FC<PropsWithChildren> = ({ children }) => {
   const [gridColors, setGridColors] = useState<number[]>(
