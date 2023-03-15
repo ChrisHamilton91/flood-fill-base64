@@ -5,7 +5,7 @@ const Header: FC = () => {
   return (
     <div className="header">
       <img className="flood-fill-icon" src={floodFillIcon}></img>
-      <p>A demo of 8-way flood fill by Chris Hamilton </p>
+      <p>A demo of 8-way flood fill by Chris Hamilton</p>
     </div>
   );
 };
