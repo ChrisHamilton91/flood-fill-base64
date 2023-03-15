@@ -1,4 +1,4 @@
-# This is a demonstration of the 8-way flood fill algorithm by Chris Hamilton
+# This is a demonstration of the 8-way flood fill algorithm
 
 ## Implemented for the Ottawa Hospital Research Institute interview round 2
 
