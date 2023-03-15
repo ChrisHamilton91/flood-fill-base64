@@ -1,5 +1,5 @@
 import { FC } from "react";
-import floodFillIcon from "../public/flood-fill.png";
+import floodFillIcon from "/flood-fill.png";
 
 const Header: FC = () => {
   return (
