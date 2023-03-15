@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { maxColumns, maxRows, minColumns, minRows, useGridCtx } from "./grid-ctx";
-import hexStringToNumber from "./color-utils/hex-string-to-number";
-import numberToHexString from "./color-utils/number-to-hex-string";
+import hexStringToNumber from "./utils/hex-string-to-number";
+import numberToHexString from "./utils/number-to-hex-string";
 
 const Sidebar: FC = () => {
   const {

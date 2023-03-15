@@ -1,5 +1,5 @@
 import { FC, useMemo } from "react";
-import numberToHexString from "./color-utils/number-to-hex-string";
+import numberToHexString from "./utils/number-to-hex-string";
 import { useGridCtx } from "./grid-ctx";
 
 const Grid: FC = () => {

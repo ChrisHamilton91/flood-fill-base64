@@ -8,9 +8,9 @@ import {
   useRef,
   useState,
 } from "react";
-import { floodFill } from "./api";
-import useForceRender from "./force-render";
-import randomColor from "./color-utils/random-color";
+import { floodFill } from "./utils/api";
+import useForceRender from "./utils/force-render";
+import randomColor from "./utils/random-color";
 
 // Keeping colors as numbers to reduce payload when passing grid over network
 type GridCtxProps = {
