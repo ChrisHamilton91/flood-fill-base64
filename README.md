@@ -1,20 +1,20 @@
 # This is a demonstration of the 8-way flood fill algorithm
 
-## Implemented for the Ottawa Hospital Research Institute interview round 2
+## Implemented for the Ottawa Hospital Research Institute, interview round 2
 
 ### Description
 
 The application has two components:
 
-- A flask server
-- A React / Vite front end
+- A [Flask](https://flask.palletsprojects.com/) server
+- A [React](https://reactjs.org/) / [Vite](https://vitejs.dev/) front end
 
 ### API endpoints
 
 The api has two endpoints:
 
 - `/ping` : used to check that the API is accessible
-- `/flood-fill` : Given a 2-D grid of numbers (representing a grid of color codes), an x and y co-ordinate, and a fill color, returns the result of the flood fill algorithm as a 2-D grid of numbers.
+- `/flood-fill` : Given a 2-D grid of numbers (representing a grid of color codes), an x and y co-ordinate, and a fill color, returns the result of the 8-way [flood fill](https://en.wikipedia.org/wiki/Flood_fill) algorithm as a 2-D grid of numbers.
 
 The `/flood-fill` endpoint expects the parameters as JSON in the request body:
 
@@ -69,7 +69,7 @@ Then install dependencies in the virtual environment:
 
 `pip install -r requirements.txt`
 
-Finally, boot the flask server:
+Finally, boot the Flask server:
 
 `flask run`
 
@@ -83,7 +83,7 @@ First install dependencies:
 
 `npm i`
 
-Then boot the vite web server:
+Then boot the Vite web server:
 
 `npx vite`
 
