@@ -1,5 +1,5 @@
 // See .env.development and .env.production for the respective API urls
-const apiUrl: string | undefined = import.meta.env.VITE_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const apiRoutes = {
   ping: apiUrl + "ping",
