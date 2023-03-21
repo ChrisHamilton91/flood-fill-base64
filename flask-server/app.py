@@ -14,19 +14,40 @@ def ping():
 @app.route("/flood-fill", methods=['POST'])
 def flood_fill_request():
     try:
-        paramNames = ['grid', 'x', 'y', 'color']
-        body: dict[str] = request.get_json()
-        missing_params = [x for x in paramNames if x not in body]
-        if len(missing_params):
-            return "Missing parameters: " + str(missing_params), 400
-        params = [body[x] for x in paramNames]
-        return flood_fill(*params)
+        params = decode_params(request.get_data())
+        grid = flood_fill(*params)
+        return encode_grid(grid)
     except Exception as e:
         logging.exception(e)
         return str(e), 500
 
 
-def flood_fill(grid: list[list[int]], x: int, y: int, color: str):
+def decode_params(params: bytes):
+    color = params[0:3].hex()
+    x = int.from_bytes(params[3:11])
+    y = int.from_bytes(params[11:19])
+    xSize = int.from_bytes(params[19:27])
+    ySize = int.from_bytes(params[27:35])
+    gridBytes = params[35:]
+    grid = [[None] * ySize for _ in range(0, xSize)]
+    for x in range(0, xSize):
+        column_start = x * ySize * 3
+        for y in range(0, ySize):
+            start = column_start + y * 3
+            grid[x][y] = gridBytes[start:start+3].hex()
+    return (grid, x, y, color)
+
+
+def encode_grid(grid: list[list[str]]):
+    return bytes(
+        [byte for column in grid for color in column for byte in hex_color_to_ints(color)])
+
+
+def hex_color_to_ints(color: str):
+    return [int(color[0:2], 16), int(color[2:4], 16), int(color[4:6], 16)]
+
+
+def flood_fill(grid: list[list[str]], x: int, y: int, color: str):
     width = len(grid)
     height = len(grid[0])
     old_color = grid[x][y]

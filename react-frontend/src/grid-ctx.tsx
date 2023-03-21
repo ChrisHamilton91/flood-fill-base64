@@ -14,11 +14,11 @@ import randomColor from "./utils/random-color";
 
 // Keeping colors as numbers to reduce payload when passing grid over network
 type GridCtxProps = {
-  gridColorsState: [number[], React.Dispatch<React.SetStateAction<number[]>>];
+  gridColorsState: [string[], React.Dispatch<React.SetStateAction<string[]>>];
   rowsState: [string, React.Dispatch<React.SetStateAction<string>>];
   columnsState: [string, React.Dispatch<React.SetStateAction<string>>];
-  fillColorState: [number, (value: number) => void];
-  grid: number[][];
+  fillColorState: [string, (value: string) => void];
+  grid: string[][];
   generateGrid: () => void;
   gridLoading: boolean;
   handleCellClick: (x: number, y: number) => void;
@@ -35,7 +35,7 @@ export const maxRows = 200 as const;
 export const maxColumns = 200 as const;
 
 export const GridCtxProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [gridColors, setGridColors] = useState<number[]>(
+  const [gridColors, setGridColors] = useState<string[]>(
     new Array(numColors).fill(0).map(randomColor)
   );
   const [rows, setRows] = useState<string>(defaultRows.toString());
@@ -45,13 +45,13 @@ export const GridCtxProvider: FC<PropsWithChildren> = ({ children }) => {
   // These are refs so we can change them without changing the onClick function of every cell (handleCellClick),
   // which would cause the entire grid to be rerendered on every change
   const forceRender = useForceRender();
-  const fillColor = useRef<number>(randomColor());
-  const setFillColor = (value: number) => {
+  const fillColor = useRef<string>(randomColor());
+  const setFillColor = (value: string) => {
     fillColor.current = value;
     forceRender();
   };
-  const grid = useRef<number[][]>([]);
-  const setGrid = (value: number[][]) => {
+  const grid = useRef<string[][]>([]);
+  const setGrid = (value: string[][]) => {
     grid.current = value;
     forceRender();
   };
@@ -87,7 +87,7 @@ export const GridCtxProvider: FC<PropsWithChildren> = ({ children }) => {
     setColumns(numColumns.toString());
 
     // Generate grid where each cell is a random color from gridColors
-    const grid: number[][] = [];
+    const grid: string[][] = [];
     for (let column = 0; column < numColumns; column++) {
       grid.push([]);
       for (let row = 0; row < numRows; row++) {
