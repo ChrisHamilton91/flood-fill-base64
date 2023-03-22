@@ -46,7 +46,7 @@ export async function floodFill(params: FloodFillParams): Promise<string[][] | n
   }
 }
 
-/** Format: [color (8 bytes), x (8 bytes), y (8 bytes), xSize (8 bytes), ySize (8 bytes), grid colors (3 bytes each) {(0,0), (0,1), (0,2), ...}] */
+/** Format: [color (3 bytes), x (8 bytes), y (8 bytes), xSize (8 bytes), ySize (8 bytes), grid colors (3 bytes each) {(0,0), (0,1), (0,2), ...}] */
 function encodeFloodFillParams(params: FloodFillParams): ArrayBuffer {
   const xSize = params.grid.length;
   const ySize = params.grid[0].length;
