@@ -23,18 +23,19 @@ def flood_fill_request():
 
 
 def decode_params(params: bytes):
-    color = params[0:3].hex()
-    x = int.from_bytes(params[3:11])
-    y = int.from_bytes(params[11:19])
-    xSize = int.from_bytes(params[19:27])
-    ySize = int.from_bytes(params[27:35])
+    print(int.from_bytes(params[3:11]))
+    color: str = params[0:3].hex()
+    x: int = int.from_bytes(params[3:11])
+    y: int = int.from_bytes(params[11:19])
+    xSize: int = int.from_bytes(params[19:27])
+    ySize: int = int.from_bytes(params[27:35])
     gridBytes = params[35:]
     grid = [[None] * ySize for _ in range(0, xSize)]
-    for x in range(0, xSize):
-        column_start = x * ySize * 3
-        for y in range(0, ySize):
-            start = column_start + y * 3
-            grid[x][y] = gridBytes[start:start+3].hex()
+    for x_i in range(0, xSize):
+        column_start = x_i * ySize * 3
+        for y_i in range(0, ySize):
+            start = column_start + y_i * 3
+            grid[x_i][y_i] = gridBytes[start:start+3].hex()
     return (grid, x, y, color)
 
 
